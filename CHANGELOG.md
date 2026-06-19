@@ -13,3 +13,5 @@ All notable changes to this documentation are recorded here. Format based on
 - CLAUDE.md with repository usage rules and content-adding workflow
 - KPN Box 12 gateway, switch port assignments (UNAS port 1, NUC port 4), and workstation WiFi connection
 - How-to guide: update Proxmox VE via the web UI
+- Project deployment doc for eve-industry-corpus (Dagster-LXC, DB-VM, UNAS NFS, build order)
+- `docs/projects/` section with layout and content-adding rules in CLAUDE.md

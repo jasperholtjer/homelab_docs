@@ -16,6 +16,7 @@ knowledge — keep entries short, factual, and current.
 | `README.md`            | Index and overview table — the entry point               |
 | `docs/network/`        | IP plan and topology                                     |
 | `docs/hardware/`       | One file per device                                      |
+| `docs/projects/`       | One file per workload deployed on the homelab            |
 | `docs/howto/`          | Task-oriented runbooks, one file per task                |
 | `CHANGELOG.md`         | Every documentation change                               |
 
@@ -35,6 +36,10 @@ knowledge — keep entries short, factual, and current.
   table and the network IP plan, then changelog it.
 - **New how-to**: create `docs/howto/<task>.md`, link it from `docs/howto/README.md`,
   then changelog it. Follow the guide template in `docs/howto/README.md`.
+- **New project**: create `docs/projects/<project>.md`, link it from the README
+  Documentation list, then changelog it. Document the homelab-side deployment
+  (guests, wiring, decisions, build order) and link out to the project's own
+  repository for platform internals — never restate them here.
 
 ## Conventions
 

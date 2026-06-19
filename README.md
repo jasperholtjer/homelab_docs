@@ -21,6 +21,8 @@ guides. Kept small and practical so infrequently-used knowledge stays close at h
   - [UNAS 2](docs/hardware/unas.md) — network storage
   - [Flex Mini switch](docs/hardware/switch.md) — 2.5G switching
   - [Workstation](docs/hardware/workstation.md) — daily-driver PC
+- Projects
+  - [eve-industry-corpus](docs/projects/eve-industry-corpus.md) — data platform deployment
 - [How-to guides](docs/howto/) — task-oriented runbooks
 
 ## Conventions
