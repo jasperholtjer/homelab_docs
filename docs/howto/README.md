@@ -5,7 +5,7 @@ is one file named after the task (kebab-case), e.g. `add-proxmox-vm.md`.
 
 ## Guides
 
-_None yet._
+- [Update Proxmox VE](update-proxmox.md) — apply package updates via the web UI
 
 ## Writing a Guide
 

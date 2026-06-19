@@ -12,3 +12,4 @@ All notable changes to this documentation are recorded here. Format based on
 - Network overview with IP plan and topology diagram
 - CLAUDE.md with repository usage rules and content-adding workflow
 - KPN Box 12 gateway, switch port assignments (UNAS port 1, NUC port 4), and workstation WiFi connection
+- How-to guide: update Proxmox VE via the web UI
