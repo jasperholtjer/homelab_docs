@@ -20,11 +20,11 @@ The UNAS controls NFS access with a trusted-client list, not a Linux-style
 `/etc/exports` ACL. The Proxmox host must be listed there or the mount fails with
 `access denied by server`.
 
-1. On the UNAS, go to **Settings → File Services → NFS** and enable NFS.
-2. Click **Add NFS Connections**, enter the Proxmox host IP `192.168.2.210` as the
-   trusted **Hostname or IP**, and **Add** it. Leave **NFS Write Mode** on `async`
-   (faster; the data is idempotent and re-derivable) unless backup crash-safety
-   demands `sync`.
+1. On the UNAS, go to **Settings → Services** and enable NFS in the **NFS** section.
+2. In that section click **Add NFS Connections** to open the drawer, enter the
+   Proxmox host IP `192.168.2.210` as the trusted **Hostname or IP**, and **Add**
+   it. Leave **NFS Write Mode** on `async` (faster; the data is idempotent and
+   re-derivable) unless backup crash-safety demands `sync`.
 3. Under **Shared Drives Permissions → Add Shared Drives**, attach the drive (`EVE`).
 
 ## Add the storage in Proxmox
