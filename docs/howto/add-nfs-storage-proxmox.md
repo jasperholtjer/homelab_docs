@@ -10,22 +10,36 @@ host-mount plus bind-mount — handled per guest, not here.
 ## Prerequisites
 
 - Access to the Proxmox web UI: [https://192.168.2.210:8006](https://192.168.2.210:8006)
-- A Shared Drive on the [UNAS 2](../hardware/unas.md) with its NFS export enabled,
-  scoped to the LAN subnet `192.168.2.0/24`
-- The UNAS reachable at `192.168.2.24` (see the [network overview](../network/overview.md))
+- Access to the [UNAS 2](../hardware/unas.md) web UI, reachable at `192.168.2.24`
+  (see the [network overview](../network/overview.md))
+- A Shared Drive on the UNAS (e.g. `EVE`)
 
-## Steps
+## Grant the Proxmox host access on the UNAS
+
+The UNAS controls NFS access with a trusted-client list, not a Linux-style
+`/etc/exports` ACL. The Proxmox host must be listed there or the mount fails with
+`access denied by server`.
+
+1. On the UNAS, go to **Settings → File Services → NFS** and enable NFS.
+2. Click **Add NFS Connections**, enter the Proxmox host IP `192.168.2.210` as the
+   trusted **Hostname or IP**, and **Add** it. Leave **NFS Write Mode** on `async`
+   (faster; the data is idempotent and re-derivable) unless backup crash-safety
+   demands `sync`.
+3. Under **Shared Drives Permissions → Add Shared Drives**, attach the drive (`EVE`).
+
+## Add the storage in Proxmox
 
 1. Open the web UI and select **Datacenter** in the left tree.
 2. Go to **Storage → Add → NFS**.
 3. Fill in the dialog:
    - **ID**: a short name for the mount, e.g. `unas-eve`.
    - **Server**: `192.168.2.24`.
-   - **Export**: click the field and pick the detected export from the dropdown
-     (Proxmox scans the server). If the list is empty, the export is not reachable
-     — check that NFS is enabled and the subnet scope includes `192.168.2.0/24`.
-   - **Content**: select **VZDump backup file** (add **ISO image** and **Container
-     template** if this drive should also hold those).
+   - **Export**: pick the detected export from the dropdown (Proxmox scans the
+     server). If the list is empty, type the path manually — it is the share name
+     as an absolute path (e.g. `/EVE`), not bare `EVE`. Confirm it from a Linux
+     client with `showmount -e 192.168.2.24` if unsure.
+   - **Content**: select **Backup** (add **ISO image** and **Container template**
+     if this drive should also hold those).
    - **Nodes**: restrict to **pve** (the only node).
 4. Click **Add**. The storage appears under the node in the left tree.
 
