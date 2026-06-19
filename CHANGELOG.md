@@ -13,5 +13,12 @@ All notable changes to this documentation are recorded here. Format based on
 - CLAUDE.md with repository usage rules and content-adding workflow
 - KPN Box 12 gateway, switch port assignments (UNAS port 1, NUC port 4), and workstation WiFi connection
 - How-to guide: update Proxmox VE via the web UI
+- How-to guide: reserve an IP address in the KPN Box via DHCP reservation
 - Project deployment doc for eve-industry-corpus (Dagster-LXC, DB-VM, UNAS NFS, build order)
 - `docs/projects/` section with layout and content-adding rules in CLAUDE.md
+- Static IPs for Dagster-LXC (192.168.2.211) and DB-VM (192.168.2.212) in the network IP plan
+- How-to guide: add a UNAS NFS export as Proxmox storage
+
+### Changed
+
+- eve-industry-corpus: UNAS Shared Drive named `EVE` (was assumed `corpus`); resolved the IP and share-name open items

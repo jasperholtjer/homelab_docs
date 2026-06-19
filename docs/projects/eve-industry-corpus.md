@@ -58,11 +58,12 @@ UI, and the materialisation log; it shells out to the `corpus` subcommands.
 Producer-first: each phase is independently verifiable, and the consumer
 database comes only once the data product exists.
 
-1. **UNAS storage.** Create a dedicated Shared Drive (`corpus`), enable the NFS
+1. **UNAS storage.** Create a dedicated Shared Drive (`EVE`), enable the NFS
    export scoped to the LAN subnet. Expect the UniFi UID/GID quirk (`unifi-core`,
    988). _Verify:_ a Linux client can mount and write.
 2. **Proxmox host.** Add the UNAS NFS as Proxmox storage (`backup`, optionally
-   `iso`/`vztmpl`). _Verify:_ the storage shows online; a test write succeeds.
+   `iso`/`vztmpl`) — see [Add UNAS NFS Storage to Proxmox](../howto/add-nfs-storage-proxmox.md).
+   _Verify:_ the storage shows online; a test write succeeds.
 3. **Dagster-LXC + corpus.** Create the LXC (rootfs on NVMe). Host-mount the NFS
    and bind-mount it into the container; fix permissions for the 988 quirk.
    Install the pinned `corpus` binary, `uv`/Python + Dagster, with `webserver`
@@ -99,9 +100,5 @@ push the host into swap. Rough budget:
 
 ## Open items
 
-- IP addresses for the Dagster-LXC and DB-VM are not yet assigned. Record them in
-  the [network overview](../network/overview.md) once chosen; it stays the single
-  source of truth for addresses.
-- The UNAS share name (`corpus` assumed above) is not yet created.
 - The binary build/publish mechanism (GitHub Release asset vs GHCR via `oras`) is
   decided in the `eve-industry-corpus` repository, not here.
