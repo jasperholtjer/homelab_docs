@@ -8,6 +8,8 @@ is one file named after the task (kebab-case), e.g. `add-proxmox-vm.md`.
 - [Update Proxmox VE](update-proxmox.md) — apply package updates via the web UI
 - [Reserve an IP Address in the KPN Box](reserve-ip-kpn-box.md) — bind a device to a fixed IP via DHCP reservation
 - [Add UNAS NFS Storage to Proxmox](add-nfs-storage-proxmox.md) — attach a UNAS NFS export as a Proxmox storage target
+- [Deploy the Dagster Orchestration LXC](deploy-dagster-lxc.md) — stand up the eve-industry-corpus orchestrator container on the NUC
+- [Install the corpus Binary on the Dagster LXC](install-corpus-binary.md) — pull, verify, and smoke-test the pinned corpus release
 
 ## Writing a Guide
 

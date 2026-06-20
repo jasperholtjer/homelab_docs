@@ -68,7 +68,9 @@ database comes only once the data product exists.
    and bind-mount it into the container; fix permissions for the 988 quirk.
    Install the pinned `corpus` binary, `uv`/Python + Dagster, with `webserver`
    and `daemon` as systemd units and `DAGSTER_HOME` on SQLite storage. Wire the
-   Dagster assets to the `corpus` subcommands, partitioned per dataset.
+   Dagster assets to the `corpus` subcommands, partitioned per dataset — see
+   [Deploy the Dagster Orchestration LXC](../howto/deploy-dagster-lxc.md) and
+   [Install the corpus Binary on the Dagster LXC](../howto/install-corpus-binary.md).
    _Verify:_ one partition runs end-to-end and writes `parquet + _INDEX.json + _DONE`.
 4. **Backfill orchestration.** Set the run-queue concurrency deliberately low —
    polite to the upstream source and gentle on the single-HDD UNAS. Each dataset

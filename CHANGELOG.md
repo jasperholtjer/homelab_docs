@@ -18,6 +18,8 @@ All notable changes to this documentation are recorded here. Format based on
 - `docs/projects/` section with layout and content-adding rules in CLAUDE.md
 - Static IPs for Dagster-LXC (192.168.2.211) and DB-VM (192.168.2.212) in the network IP plan
 - How-to guide: add a UNAS NFS export as Proxmox storage
+- How-to guide: deploy the Dagster orchestration LXC — unprivileged container, 988 UID/GID map, UNAS NFS host-mount and bind-mount (eve-industry-corpus phase 3)
+- How-to guide: install the corpus binary on the Dagster LXC — fine-grained PAT auth, pinned checksum-verified release, CORPUS_DATASETS_DIR, end-to-end ingest smoke test (v0.1.3)
 
 ### Changed
 
