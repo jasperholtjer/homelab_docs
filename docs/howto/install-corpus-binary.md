@@ -19,6 +19,11 @@ Pinned to **v0.1.3** throughout. Bump the `VERSION` value to install a newer rel
   including the `corpus` service account (UID 1000, primary group 988)
 - Outbound HTTPS from the LXC to `github.com` (release pull) and `data.everef.net`
   (ingest source) — pull-only, no inbound
+- `rclone` on PATH: `apt-get update && apt-get install -y rclone`. The binary
+  shells out to `rclone lsjson` (via the config-free `:http:` backend) to list EVE
+  Ref for `everef missing-partitions` / `everef list` — the sensor depends on it.
+  `ingest` fetches over plain HTTPS and does not need it, so a missing `rclone`
+  surfaces only when the availability sensor first runs.
 - A GitHub fine-grained PAT, generated once (see below)
 
 ### Create the fine-grained PAT
@@ -125,7 +130,7 @@ chmod 0644 /etc/profile.d/corpus.sh
 > as `pct enter`) inherits neither the env var nor the extended `PATH` — invoke
 > the binary by absolute path there. The Dagster systemd units do not source it
 > either; they must set `Environment=CORPUS_DATASETS_DIR=...` and call `corpus` by
-> absolute path. That wiring belongs to the orchestration repository.
+> absolute path. That wiring belongs to the `eve-industry-orchestration` repository.
 
 ## 4. Verify the install
 
