@@ -21,6 +21,7 @@ All notable changes to this documentation are recorded here. Format based on
 - How-to guide: deploy the Dagster orchestration LXC — unprivileged container, 988 UID/GID map, UNAS NFS host-mount and bind-mount (eve-industry-corpus phase 3)
 - How-to guide: install the corpus binary on the Dagster LXC — fine-grained PAT auth, pinned checksum-verified release, CORPUS_DATASETS_DIR, end-to-end ingest smoke test (v0.1.3)
 - Deploy-Dagster-LXC how-to: section 4 "Deploy the orchestrator" — user-local `uv` install as `corpus`, clone + `uv sync`, `DAGSTER_HOME` setup, systemd unit install, and a real-binary Silver smoke test
+- NUC Access section: SSH entry point and the `ssh root@210` → `pct enter 211` two-hop to reach the Dagster LXC
 
 ### Changed
 

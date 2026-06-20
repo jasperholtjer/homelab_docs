@@ -6,6 +6,20 @@ Virtualization host running Proxmox VE 9.
 
 - Web UI: [https://192.168.2.210:8006](https://192.168.2.210:8006)
 - IP: `192.168.2.210` (static)
+- SSH: `ssh root@192.168.2.210` (the host is the only SSH entry point)
+
+Guests have no direct SSH; reach them from the host with `pct enter <CTID>`, which
+opens a root shell without a guest key or password. The two-hop to the Dagster
+LXC (CT 211):
+
+```bash
+ssh root@192.168.2.210      # the NUC (Proxmox host)
+pct enter 211               # root shell inside the Dagster LXC
+```
+
+Inside CT 211, container root cannot write `/mnt/eve` (it is not in group 988) —
+run share-touching work as `corpus`. See
+[Deploy the Dagster Orchestration LXC](../howto/deploy-dagster-lxc.md).
 
 ## Hardware
 
