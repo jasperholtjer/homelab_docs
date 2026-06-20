@@ -35,9 +35,10 @@ The UNAS controls NFS access with a trusted-client list, not a Linux-style
    - **ID**: a short name for the mount, e.g. `unas-eve`.
    - **Server**: `192.168.2.24`.
    - **Export**: pick the detected export from the dropdown (Proxmox scans the
-     server). If the list is empty, type the path manually — it is the share name
-     as an absolute path (e.g. `/EVE`), not bare `EVE`. Confirm it from a Linux
-     client with `showmount -e 192.168.2.24` if unsure.
+     server with `showmount`). UniFi OS does not export the bare share name; the
+     path is `/volume/<drive-uuid>/.srv/.unifi-drive/EVE/.data`. If the dropdown
+     is empty, run `showmount -e 192.168.2.24` from a Linux client and copy the
+     path verbatim.
    - **Content**: select **Backup** (add **ISO image** and **Container template**
      if this drive should also hold those).
    - **Nodes**: restrict to **pve** (the only node).
