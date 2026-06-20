@@ -20,7 +20,9 @@ All notable changes to this documentation are recorded here. Format based on
 - How-to guide: add a UNAS NFS export as Proxmox storage
 - How-to guide: deploy the Dagster orchestration LXC — unprivileged container, 988 UID/GID map, UNAS NFS host-mount and bind-mount (eve-industry-corpus phase 3)
 - How-to guide: install the corpus binary on the Dagster LXC — fine-grained PAT auth, pinned checksum-verified release, CORPUS_DATASETS_DIR, end-to-end ingest smoke test (v0.1.3)
+- Deploy-Dagster-LXC how-to: section 4 "Deploy the orchestrator" — user-local `uv` install as `corpus`, clone + `uv sync`, `DAGSTER_HOME` setup, systemd unit install, and a real-binary Silver smoke test
 
 ### Changed
 
 - eve-industry-corpus: UNAS Shared Drive named `EVE` (was assumed `corpus`); resolved the IP and share-name open items
+- Orchestration repository renamed `eve-industry-orchestration` (was `eve-corpus-orchestration`) to match the `eve-industry-*` convention

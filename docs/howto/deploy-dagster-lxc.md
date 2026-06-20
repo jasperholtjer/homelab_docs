@@ -7,7 +7,7 @@ platform — phase 3 of that project's build order.
 This is the producer's control plane: it mounts the UNAS over NFS, drives the
 `corpus` subcommands, and keeps Dagster's run-state on the NUC's NVMe. The
 orchestration code (Dagster assets, systemd units, deploy scripts) lives in its
-own `eve-corpus-orchestration` repository and is pulled in during the runtime
+own `eve-industry-orchestration` repository and is pulled in during the runtime
 step — this guide covers the homelab-side host setup, not the application code.
 
 ## Prerequisites
@@ -192,3 +192,81 @@ The file's owner displays as `65534` (nobody): the container's UID has no name o
 the UNAS, which is cosmetic on read-back. Write access hinges on **group 988** and
 the group-writable parent directory, so create, replace, and delete all work —
 sufficient for the write-once `parquet + _INDEX.json + _DONE` contract.
+
+## 4. Deploy the orchestrator
+
+Requires the `corpus` binary already installed per
+[Install the corpus Binary on the Dagster LXC](install-corpus-binary.md). The
+orchestration code lives in the `eve-industry-orchestration` repo.
+
+Split work by identity: the `corpus` account owns the venv and everything written
+to the share (it is in group 988; container root is not and cannot write
+`/mnt/eve`). Root only installs the systemd units.
+
+1. Install `uv` for the `corpus` account. The standalone installer is user-local —
+   no root, no system package. It lands in `~/.local/bin` and appends that to the
+   shell profile.
+
+   ```bash
+   su - corpus
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   source ~/.bashrc        # or: export PATH="$HOME/.local/bin:$PATH"
+   uv --version
+   ```
+
+2. Clone and build the venv as `corpus`. `uv sync` fetches a matching Python
+   (`requires-python >=3.10,<3.15`) if the container lacks one.
+
+   ```bash
+   git clone <repo-url> /opt/eve-industry-orchestration
+   cd /opt/eve-industry-orchestration
+   uv sync
+   ```
+
+   If root cloned the directory, hand it to `corpus` first:
+   `chown -R corpus:988 /opt/eve-industry-orchestration`.
+
+3. Prepare `DAGSTER_HOME` (run-state on the NVMe, not the share).
+
+   ```bash
+   # as root
+   install -d -o corpus -g 988 /var/lib/dagster
+   cp /opt/eve-industry-orchestration/deploy/dagster.yaml /var/lib/dagster/dagster.yaml
+   chown corpus:988 /var/lib/dagster/dagster.yaml
+   ```
+
+4. Install and start the systemd units (run as `User=corpus`).
+
+   ```bash
+   # as root
+   cp /opt/eve-industry-orchestration/deploy/dagster-{webserver,daemon}.service /etc/systemd/system/
+   systemctl daemon-reload
+   systemctl enable --now dagster-webserver dagster-daemon
+   ```
+
+### Verify
+
+Smoke-test the full chain as `corpus` before relying on the services — this drives
+the real binary and writes a real Silver partition to the share:
+
+```bash
+su - corpus
+cd /opt/eve-industry-orchestration
+CORPUS_BINARY_PATH=/usr/local/bin/corpus \
+CORPUS_DATASETS_DIR=/usr/local/share/corpus/datasets \
+CORPUS_SINK_PATH=/mnt/eve \
+uv run dg launch --assets market_history_silver --partition 2025-06-18
+ls /mnt/eve/silver/market-history/year=2025/month=06/day=18/   # _DONE _INDEX.json data.parquet
+```
+
+Then confirm the services and reach the UI:
+
+```bash
+systemctl status dagster-daemon dagster-webserver   # both active (running)
+```
+
+The webserver serves on [192.168.2.211:3000](http://192.168.2.211:3000). Two
+post-deploy actions live in the UI: enable the `market_history_availability_sensor`
+(it ships STOPPED) so new dates ingest automatically, and run a deliberate backfill
+for history (Silver starts `2020-01-02`; the daemon serialises on
+`max_concurrent_runs: 1`).
