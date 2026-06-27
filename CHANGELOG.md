@@ -23,8 +23,10 @@ All notable changes to this documentation are recorded here. Format based on
 - Deploy-Dagster-LXC how-to: section 4 "Deploy the orchestrator" — user-local `uv` install as `corpus`, clone + `uv sync`, `DAGSTER_HOME` setup, systemd unit install, and a real-binary Silver smoke test
 - NUC Access section: SSH entry point and the `ssh root@210` → `pct enter 211` two-hop to reach the Dagster LXC
 - Install-corpus-binary prerequisite: `rclone` on PATH (used by `everef` listing / the availability sensor; `ingest` does not need it)
+- How-to guide: deploy the DB-VM — full VM with read-only Gold NFS mount, Postgres `eve` + Neo4j on localhost, eve-industry-serving loader, and the SSH trigger from the Dagster LXC (eve-industry-corpus phase 5)
 
 ### Changed
 
 - eve-industry-corpus: UNAS Shared Drive named `EVE` (was assumed `corpus`); resolved the IP and share-name open items
+- eve-industry-corpus phase 5 (DB-VM): Postgres on localhost with the serving loader co-located and SSH-triggered, rather than Postgres opened to the LXC subnet over `vmbr0`
 - Orchestration repository renamed `eve-industry-orchestration` (was `eve-corpus-orchestration`) to match the `eve-industry-*` convention

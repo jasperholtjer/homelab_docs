@@ -10,6 +10,7 @@ is one file named after the task (kebab-case), e.g. `add-proxmox-vm.md`.
 - [Add UNAS NFS Storage to Proxmox](add-nfs-storage-proxmox.md) — attach a UNAS NFS export as a Proxmox storage target
 - [Deploy the Dagster Orchestration LXC](deploy-dagster-lxc.md) — stand up the eve-industry-corpus orchestrator container on the NUC
 - [Install the corpus Binary on the Dagster LXC](install-corpus-binary.md) — pull, verify, and smoke-test the pinned corpus release
+- [Deploy the DB-VM](deploy-db-vm.md) — stand up Postgres + Neo4j and the eve-industry-serving loader on the NUC
 
 ## Writing a Guide
 

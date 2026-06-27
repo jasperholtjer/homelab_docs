@@ -77,10 +77,12 @@ database comes only once the data product exists.
    declares its own partition scheme and any cross-partition dependencies (these
    vary per dataset; the platform setup is identical regardless). _Verify:_ a
    small backfill produces a correct contract and is idempotent on re-run.
-5. **DB-VM (consumer).** Create the VM (disk on NVMe). Install Postgres (listening
-   on `vmbr0`, `pg_hba` opened for the Dagster-LXC subnet, database `eve`) and
-   Neo4j (with an explicit heap limit). Add a loader that reads `_DONE`
-   partitions into the databases. _Verify:_ a loaded Gold partition is queryable.
+5. **DB-VM (consumer).** Create the VM (disk on NVMe). Mount the Gold tree
+   read-only over NFS, install Postgres (database `eve`) and Neo4j (explicit heap
+   limit), both on `localhost`. Deploy the `eve-industry-serving` loader, which
+   reads `_DONE` partitions into both stores; the Dagster LXC triggers it over
+   SSH. See [Deploy the DB-VM](../howto/deploy-db-vm.md). _Verify:_ a loaded Gold
+   partition is queryable.
 6. **Backups and ops.** `vzdump` the VM and LXC to the UNAS storage. Document the
    runbook: recover a stuck run, replay a partition, resume a backfill.
 
