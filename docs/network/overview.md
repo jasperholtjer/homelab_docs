@@ -9,8 +9,10 @@ service interface use a fixed IP so their web UIs stay reachable at a known addr
 | ----------- | ------------- | ---------- | ---------------------------------------------------- |
 | KPN Box 12  | 192.168.2.254 | Gateway    | Router / modem                                       |
 | NUC         | 192.168.2.210 | Static     | Proxmox VE — [:8006](https://192.168.2.210:8006)     |
-| Dagster-LXC | 192.168.2.211 | Static     | Dagster webserver — [:3000](http://192.168.2.211:3000) ([eve-industry-corpus](../projects/eve-industry-corpus.md)) |
-| DB-VM       | 192.168.2.212 | Static     | Postgres `eve` + Neo4j ([eve-industry-corpus](../projects/eve-industry-corpus.md)) |
+| Dagster-LXC | 192.168.2.211 | Static     | Dagster webserver — [:3000](http://192.168.2.211:3000) ([Dagster-LXC](../hardware/dagster-lxc.md), [eve-industry-corpus](../projects/eve-industry-corpus.md)) |
+| DB-VM       | 192.168.2.212 | Static     | Postgres `eve` + Neo4j ([DB-VM](../hardware/db-vm.md), [eve-industry-corpus](../projects/eve-industry-corpus.md)) |
+| MLflow-LXC  | 192.168.2.213 | Static     | MLflow tracking + registry — [:5000](http://192.168.2.213:5000) ([eve-industry-predict](../projects/eve-industry-predict.md)) |
+| Dragonfly-LXC | 192.168.2.214 | Static   | Feast online store (Redis-compat) `:6379` ([eve-industry-predict](../projects/eve-industry-predict.md)) |
 | UNAS 2      | 192.168.2.24  | Static     | UNAS web UI — [http](http://192.168.2.24/)           |
 
 ## Topology

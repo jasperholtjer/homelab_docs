@@ -11,6 +11,8 @@ is one file named after the task (kebab-case), e.g. `add-proxmox-vm.md`.
 - [Deploy the Dagster Orchestration LXC](deploy-dagster-lxc.md) — stand up the eve-industry-corpus orchestrator container on the NUC
 - [Install the corpus Binary on the Dagster LXC](install-corpus-binary.md) — pull, verify, and smoke-test the pinned corpus release
 - [Deploy the DB-VM](deploy-db-vm.md) — stand up Postgres + Neo4j and the eve-industry-serving loader on the NUC
+- [Deploy the MLflow LXC](deploy-mlflow-lxc.md) — stand up the MLflow tracking + registry server with its Postgres backing store on the NUC
+- [Deploy the Dragonfly LXC](deploy-dragonfly-lxc.md) — stand up the Feast online store on the NUC
 
 ## Writing a Guide
 

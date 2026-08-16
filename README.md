@@ -18,11 +18,14 @@ guides. Kept small and practical so infrequently-used knowledge stays close at h
 - [Network overview](docs/network/overview.md) — IP plan and topology
 - Hardware
   - [NUC](docs/hardware/nuc.md) — Proxmox host
+  - [Dagster-LXC](docs/hardware/dagster-lxc.md) — orchestration guest (eve-industry-corpus)
+  - [DB-VM](docs/hardware/db-vm.md) — Postgres + Neo4j guest (eve-industry-corpus)
   - [UNAS 2](docs/hardware/unas.md) — network storage
   - [Flex Mini switch](docs/hardware/switch.md) — 2.5G switching
   - [Workstation](docs/hardware/workstation.md) — daily-driver PC
 - Projects
   - [eve-industry-corpus](docs/projects/eve-industry-corpus.md) — data platform deployment
+  - [eve-industry-predict](docs/projects/eve-industry-predict.md) — ML platform deployment (MLflow + Feast online store)
 - [How-to guides](docs/howto/) — task-oriented runbooks
 
 ## Conventions

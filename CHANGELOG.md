@@ -24,6 +24,12 @@ All notable changes to this documentation are recorded here. Format based on
 - NUC Access section: SSH entry point and the `ssh root@210` → `pct enter 211` two-hop to reach the Dagster LXC
 - Install-corpus-binary prerequisite: `rclone` on PATH (used by `everef` listing / the availability sensor; `ingest` does not need it)
 - How-to guide: deploy the DB-VM — full VM with read-only Gold NFS mount, Postgres `eve` + Neo4j on localhost, eve-industry-serving loader, and the SSH trigger from the Dagster LXC (eve-industry-corpus phase 5)
+- Project deployment doc for eve-industry-predict — MLflow-LXC + Dragonfly-LXC, dedicated UNAS `ML` share, proxied artefacts, and build order
+- How-to guide: deploy the MLflow LXC — unprivileged container, 988 UID/GID map, `ML`-share NFS mount, own Postgres backing store, and `--serve-artifacts` proxy (eve-industry-predict phase 2)
+- How-to guide: deploy the Dragonfly LXC — unprivileged container running the Feast online store bound to the LAN with a password and memory cap (eve-industry-predict phase 3)
+- Static IPs for MLflow-LXC (192.168.2.213) and Dragonfly-LXC (192.168.2.214) in the network IP plan
+- Hardware page for the DB-VM (Proxmox guest 212) — access, localhost-bound Postgres/Neo4j services, virtual specs, and SSH-tunnel note
+- Hardware page for the Dagster-LXC (Proxmox guest 211) — access, Dagster/corpus services, the CORPUS_*/SERVING_* environment table, and virtual specs
 
 ### Changed
 
